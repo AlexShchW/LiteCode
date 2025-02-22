@@ -1,0 +1,19 @@
+{   
+    "name": "Valid Palindrome",
+    "category": "Two Pointers",
+    "difficulty": "easy",
+    "description": "Given a string s, return True if it is a palindrome, otherwise return False.\nA palindrome is a string that reads the same forward and backward. It is also case-insensitive and ignores all non-alphanumeric characters.\nExamples:\nInput: s = \"Was it a car or a cat I saw?\"\nOutput: True\nInput: s = \"tab a cat\"\nOutput: False",
+    "recommended_time_complexity": "O(N)",
+    "recommended_space_complexity": "O(1)",
+    "testcases": 
+    [
+        {
+            "input": "Was it a car or a cat I saw?",
+            "output": true
+        },
+        {
+            "input": "tab a cat",
+            "output": false
+        }
+    ]
+}
