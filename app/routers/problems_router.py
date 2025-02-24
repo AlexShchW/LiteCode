@@ -1,9 +1,7 @@
-from typing import Optional
-from fastapi import APIRouter
-from sqlalchemy import select
+from fastapi import APIRouter, HTTPException
 
-from app.database.database_access import async_session_maker
-from app.database.problems_model import Problems
+from app.DAO.problems_DAO import ProblemsDAO
+from app.schemas.problems_schemas import ProblemSchema
 
 
 router = APIRouter(
@@ -11,11 +9,22 @@ router = APIRouter(
     tags=["Problems"],
 )
 
-@router.get("")
-async def get_problems(
-    difficulty: Optional[str] = None,
-    category: Optional[str] = None):
-    async with async_session_maker() as session:
-        query = select(Problems)
-        result = await session.execute(query)
-        return result.scalars().all()
+@router.get("/", response_model=list[ProblemSchema])
+async def get_problems(category: str = None, difficulty: str = None):
+    filters = {}
+    if category:
+        filters["category"] = category
+    if difficulty:
+        filters["difficulty"] = difficulty
+    problems = await ProblemsDAO.find_all(**filters)
+    if not problems:
+        raise HTTPException(status_code=404, detail="No problems found")
+    return problems
+
+
+@router.get("/{problem_id}", response_model=ProblemSchema)
+async def get_problem_by_id(problem_id: int):
+    problem = await ProblemsDAO.find_by_id(problem_id)
+    if not problem:
+        raise HTTPException(status_code=404, detail="Problem not found")
+    return problem

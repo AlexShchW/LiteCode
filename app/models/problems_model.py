@@ -1,5 +1,5 @@
 from sqlalchemy import JSON, Column, Integer, String
-from app.database.database_access import Base
+from app.database_access import Base
 
 class Problems(Base):
     __tablename__ = "problems"
