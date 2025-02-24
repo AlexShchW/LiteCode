@@ -10,3 +10,6 @@ DB_PASS = os.getenv('DB_PASS')
 DB_NAME = os.getenv('DB_NAME')
 
 DATABASE_URL = f"postgresql+asyncpg://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+
+JWT_SECRET_KEY=os.getenv('JWT_SECRET_KEY')
+JWT_ALGORITHM=os.getenv('JWT_ALGORITHM')
