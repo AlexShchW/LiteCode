@@ -7,8 +7,8 @@ from app.users_utils.auth import authenticate_user, create_access_token, get_pas
 from app.users_utils.dependencies import get_current_user
 
 auth_router = APIRouter(
-    prefix="/auth",
-    tags=["Auth"]
+    prefix="/user",
+    tags=["User"]
 )
 
 @auth_router.post("/register")

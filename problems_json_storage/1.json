@@ -8,11 +8,11 @@
     "testcases": 
     [
         {
-            "input": "Was it a car or a cat I saw?",
+            "input": ["Was it a car or a cat I saw?"],
             "output": true
         },
         {
-            "input": "tab a cat",
+            "input": ["tab a cat"],
             "output": false
         }
     ]

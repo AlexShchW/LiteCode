@@ -11,8 +11,8 @@ sys.path.insert(0, dirname(dirname(dirname(abspath(__file__)))))
 
 from app.config import DATABASE_URL
 from app.database_access import Base
-from app.database.problems_model import Problems
-from app.database.users_model import Users
+from app.models.problems_model import Problems
+from app.models.users_model import Users
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

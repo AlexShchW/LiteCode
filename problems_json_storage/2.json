@@ -2,13 +2,13 @@
     "name": "3Sum",
     "category": "Two Pointers",
     "difficulty": "medium",
-    "description": "Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] where nums[i] + nums[j] + nums[k] == 0, and i < j < k.\nThe output should not contain any duplicate triplets. You may return the output and the triplets in any order.\nExample 1:\nInput: nums = [-1,0,1,2,-1,-4]\nOutput: [[-1,-1,2],[-1,0,1]]",
+    "description": "Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] where nums[i] + nums[j] + nums[k] == 0, and i < j < k.\nThe output should not contain any duplicate triplets. You must return the output and the triplets in non-decreasing order.\nExample 1:\nInput: nums = [-1,0,1,2,-1,-4]\nOutput: [[-1,-1,2],[-1,0,1]]",
     "recommended_time_complexity": "O(N^2)",
     "recommended_space_complexity": "O(1)",
     "testcases":
     [
       {
-        "input": [-1, 0, 1, 2, -1, -4],
+        "input": [[-1, 0, 1, 2, -1, -4]],
         "output": [[-1, -1, 2], [-1, 0, 1]]
       }
     ]

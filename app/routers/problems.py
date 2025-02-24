@@ -1,8 +1,11 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 
 from app.DAO.problems_DAO import ProblemsDAO
-from app.schemas.problems_schemas import ProblemSchema
+from app.models.users_model import Users
+from app.schemas.problems_schemas import CodeSubmission, ProblemSchema
+from app.users_utils.dependencies import get_current_user
 
+from app.solving_utils.process_code_utils import validate_code
 
 router = APIRouter(
     prefix="/problems",
@@ -28,3 +31,19 @@ async def get_problem_by_id(problem_id: int):
     if not problem:
         raise HTTPException(status_code=404, detail="Problem not found")
     return problem
+
+
+
+@router.post("/{problem_id}/submit")
+async def validate_solution(problem_id: int, submission: CodeSubmission, user: Users = Depends(get_current_user)):
+    problem = await ProblemsDAO.find_by_id(problem_id)
+    if not problem:
+        raise HTTPException(status_code=404, detail="Problem not found")
+    testcases = problem.testcases
+    code = submission.code
+    validation_results = await validate_code(code, testcases)
+    passed_amount = sum(result["passed"] for result in validation_results)
+    total_testcases = len(testcases)
+    submission_result = passed_amount == total_testcases
+    return {"submission_result": submission_result,
+            "testcases_result": f"passed {passed_amount} out of {total_testcases} tests"}

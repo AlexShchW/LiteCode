@@ -13,3 +13,7 @@ class ProblemSchema(BaseModel):
 
     class Config:
         from_attributes = True
+
+
+class CodeSubmission(BaseModel):
+    code: str
